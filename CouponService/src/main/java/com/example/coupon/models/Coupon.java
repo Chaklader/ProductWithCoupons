@@ -1,11 +1,11 @@
 package com.example.coupon.models;
 
-import java.math.BigDecimal;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import java.math.BigDecimal;
+import java.util.Date;
+
+import javax.persistence.*;
 
 
 @Entity
@@ -19,8 +19,11 @@ public class Coupon {
 
     private BigDecimal discount;
 
-    private String expDate;
+//    private String expDate;
 
+    @Temporal(TemporalType.DATE)
+    @JsonFormat(pattern = "MM-dd-yyyy")
+    private java.util.Date expDate;
 
     public String getCode() {
         return code;
@@ -38,11 +41,11 @@ public class Coupon {
         this.discount = discount;
     }
 
-    public String getExpDate() {
+    public Date getExpDate() {
         return expDate;
     }
 
-    public void setExpDate(String expDate) {
+    public void setExpDate(Date expDate) {
         this.expDate = expDate;
     }
 

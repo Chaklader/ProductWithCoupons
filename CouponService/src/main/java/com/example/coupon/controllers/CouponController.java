@@ -1,19 +1,30 @@
 package com.example.coupon.controllers;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.example.coupon.models.Coupon;
+import com.example.coupon.repos.CouponRepo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("/couponapi")
 public class CouponController {
 
+    @Autowired
+    private CouponRepo couponRepo;
 
-    @GetMapping("/hello")
-    public String helloUser() {
-        return "hello World";
+    @PostMapping("/coupons")
+    public Coupon createCoupon(@RequestBody Coupon coupon) {
+
+        Coupon createdCoupon = couponRepo.save(coupon);
+        return createdCoupon;
     }
 
-    @GetMapping("/bye")
-    public String byeUser() {
-        return "Good bye";
+    @GetMapping("/coupons/{code}")
+    public Coupon getCoupon(@PathVariable("code") String code) {
+
+        Coupon coupon = couponRepo.findByCode(code);
+        return coupon;
     }
+
+
 }

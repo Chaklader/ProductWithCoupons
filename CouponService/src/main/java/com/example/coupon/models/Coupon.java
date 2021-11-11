@@ -14,9 +14,13 @@ public class Coupon {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String code;
+
     private BigDecimal discount;
+
     private String expDate;
+
 
     public String getCode() {
         return code;

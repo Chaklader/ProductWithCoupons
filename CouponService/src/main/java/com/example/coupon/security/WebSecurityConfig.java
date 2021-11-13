@@ -33,16 +33,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
 //        http.httpBasic();
-        http.formLogin();
+//        http.formLogin();
 
         http.authorizeRequests()
                 .mvcMatchers(HttpMethod.GET, "/index", "/couponapi/coupons/{code:^[A-Z]*$}", "/savecouponresponse", "/showGetCoupon", "/couponDetails").hasAnyRole("ADMIN", "USER")
                 .mvcMatchers(HttpMethod.GET, "/createcoupon", "/showCreateCoupon").hasRole("ADMIN")
                 .mvcMatchers(HttpMethod.POST, "/couponapi/coupons", "/saveCoupon").hasRole("ADMIN")
                 .mvcMatchers(HttpMethod.POST, "/getCoupon").hasAnyRole("ADMIN", "USER")
-                .mvcMatchers("/", "/login").permitAll()
+                .mvcMatchers("/", "/login", "/logout", "/showReg", "/registerUser").permitAll()
                 .anyRequest().denyAll()
-                .and().csrf().disable();
+                .and().csrf().disable().logout().logoutSuccessUrl("/").invalidateHttpSession(true);
     }
 
     @Bean

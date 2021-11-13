@@ -1,6 +1,7 @@
 package com.example.coupon.models;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -22,7 +23,8 @@ public class Coupon {
 //    private String expDate;
 
     @Temporal(TemporalType.DATE)
-    @JsonFormat(pattern = "MM-dd-yyyy")
+    @DateTimeFormat(pattern = "MM-dd-yyyy")
+//    @JsonFormat(pattern = "MM-dd-yyyy")
     private java.util.Date expDate;
 
     public String getCode() {

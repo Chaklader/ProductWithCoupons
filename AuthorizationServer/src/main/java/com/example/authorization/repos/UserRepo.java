@@ -1,6 +1,6 @@
-package com.example.AuthorizationServer.repos;
+package com.example.authorization.repos;
 
-import com.example.AuthorizationServer.models.User;
+import com.example.authorization.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 

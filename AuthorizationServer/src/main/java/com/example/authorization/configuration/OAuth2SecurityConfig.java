@@ -1,4 +1,4 @@
-package com.example.AuthorizationServer.configuration;
+package com.example.authorization.configuration;
 
 
 import org.springframework.context.annotation.Bean;

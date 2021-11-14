@@ -1,4 +1,4 @@
-package com.example.AuthorizationServer.models;
+package com.example.authorization.models;
 
 import org.springframework.security.core.GrantedAuthority;
 

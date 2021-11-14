@@ -1,4 +1,4 @@
-package com.example.AuthorizationServer.models;
+package com.example.authorization.models;
 
 import javax.persistence.*;
 import java.util.Set;

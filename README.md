@@ -50,3 +50,32 @@
 
 <br>
 <br>
+
+
+<br>
+<br>
+
+<img src="images/NORMAL_OAUTH_WITHOUT_JWT.png" alt="Girl in a jacket" >
+
+<br>
+<br>
+
+
+
+
+<br>
+<br>
+
+<img src="images/NORMAL_OAUTH_WITH_JWT.png" alt="Girl in a jacket" >
+
+<br>
+<br>
+
+
+
+
+```
+    keytool -genkeypair -alias jwtiscool -keyalg RSA -keypass jwtiscool -keystore jwtiscool.jks -storepass jwtiscool
+
+    keytool -list -rfc --keystore jwtiscool.jks | openssl x509 -inform pem -pubkey
+```

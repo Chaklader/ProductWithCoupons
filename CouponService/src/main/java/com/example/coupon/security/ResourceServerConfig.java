@@ -10,7 +10,8 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Res
 
 @Configuration
 @EnableResourceServer
-public class ResouceServerConfig extends ResourceServerConfigurerAdapter {
+public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
+
 
 	private static final String RESOURCE_ID = "couponservice";
 
@@ -21,8 +22,9 @@ public class ResouceServerConfig extends ResourceServerConfigurerAdapter {
 
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().mvcMatchers(HttpMethod.GET, "/couponapi/coupons/{code:^[A-Z]*$}")
-				.hasAnyRole("USER", "ADMIN").mvcMatchers(HttpMethod.POST, "/couponapi/coupons").hasRole("ADMIN")
+		http.authorizeRequests()
+				.mvcMatchers(HttpMethod.GET, "/couponapi/coupons/{code:^[A-Z]*$}").hasAnyRole("USER", "ADMIN")
+				.mvcMatchers(HttpMethod.POST, "/couponapi/coupons").hasRole("ADMIN")
 				.anyRequest().denyAll().and().csrf().disable();
 
 	}

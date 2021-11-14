@@ -12,6 +12,7 @@ import javax.persistence.*;
 @Entity
 public class Coupon {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -24,8 +25,9 @@ public class Coupon {
 
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "MM-dd-yyyy")
-//    @JsonFormat(pattern = "MM-dd-yyyy")
+    @JsonFormat(pattern = "MM-dd-yyyy")
     private java.util.Date expDate;
+
 
     public String getCode() {
         return code;

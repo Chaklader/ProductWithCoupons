@@ -71,6 +71,23 @@
 <br>
 <br>
 
+<br>
+<br>
+
+<img src="images/JWT_ACCESS_CODE.png" alt="Girl in a jacket" >
+
+<br>
+<br>
+
+
+<br>
+<br>
+
+<img src="images/OAUTH_URL.png" alt="Girl in a jacket" >
+
+<br>
+<br>
+
 
 
 

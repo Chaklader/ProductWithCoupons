@@ -1,16 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Show get coupon</title>
 </head>
 
 
-
-
 <body>
 
-<form action="/getCoupon" method="post">
+<!--<form action="/getCoupon" method="post">-->
+<form action="#" th:action="@{/getCoupon}" method="post">
     Coupon Code<label>
     <input name="code">
 </label>

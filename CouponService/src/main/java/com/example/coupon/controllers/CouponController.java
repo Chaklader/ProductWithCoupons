@@ -22,12 +22,6 @@ public class CouponController {
     private CouponRepo couponRepo;
 
 
-//    @GetMapping("/")
-//    public String index() {
-//
-//        return "index";
-//    }
-
     @GetMapping("/showCreateCoupon")
     public String showCreateCoupon() {
 

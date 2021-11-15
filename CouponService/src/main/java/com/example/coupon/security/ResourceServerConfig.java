@@ -1,6 +1,8 @@
 package com.example.coupon.security;
 
 
+import org.hibernate.procedure.spi.ParameterRegistrationImplementor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -25,6 +27,8 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
 	private static final String RESOURCE_ID = "couponservice";
 
+	@Autowired
+	private JwtAccessTokenConverter jwtAccessTokenConverter;
 
 //	@Value("${publicKey}")
 //	public String publicKey;
@@ -47,7 +51,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
 	@Bean
 	public TokenStore tokenStore() {
-		return new JwtTokenStore(jwtAccessTokenConverter());
+		return new JwtTokenStore(jwtAccessTokenConverter);
 	}
 
 	@Bean

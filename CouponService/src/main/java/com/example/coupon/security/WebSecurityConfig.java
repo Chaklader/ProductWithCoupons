@@ -17,7 +17,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
  * @author chaklader on @date 11/11/21
  */
 //@Configuration
-public class WebSecurityConfig2 extends WebSecurityConfigurerAdapter {
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
     @Autowired
@@ -43,7 +43,7 @@ public class WebSecurityConfig2 extends WebSecurityConfigurerAdapter {
                 .mvcMatchers(HttpMethod.POST, "/getCoupon").hasAnyRole("ADMIN", "USER")
                 .mvcMatchers("/", "/login", "/logout", "/showReg", "/registerUser").permitAll()
                 .anyRequest().denyAll()
-                .and().csrf().disable().logout().logoutSuccessUrl("/").invalidateHttpSession(true);
+                .and().logout().logoutSuccessUrl("/").invalidateHttpSession(true);
     }
 
     @Bean

@@ -14,8 +14,8 @@ import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenCo
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
 
-@Configuration
-@EnableResourceServer
+//@Configuration
+//@EnableResourceServer
 public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
 

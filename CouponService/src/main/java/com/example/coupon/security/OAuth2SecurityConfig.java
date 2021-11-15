@@ -12,7 +12,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 /**
  * @author chaklader on @date 11/11/21
  */
-@Configuration
+//@Configuration
 public class OAuth2SecurityConfig extends WebSecurityConfigurerAdapter {
 
 

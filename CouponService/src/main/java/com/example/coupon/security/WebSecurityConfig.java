@@ -11,13 +11,17 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.servlet.util.matcher.MvcRequestMatcher;
+import org.springframework.security.web.util.matcher.RegexRequestMatcher;
+import org.springframework.security.web.util.matcher.RequestMatcher;
+import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
 
 
 /**
  * @author chaklader on @date 11/11/21
  */
 @Configuration
-public class WebSecurityConfig2 extends WebSecurityConfigurerAdapter {
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
     @Autowired
@@ -43,7 +47,17 @@ public class WebSecurityConfig2 extends WebSecurityConfigurerAdapter {
                 .mvcMatchers(HttpMethod.POST, "/getCoupon").hasAnyRole("ADMIN", "USER")
                 .mvcMatchers("/", "/login", "/logout", "/showReg", "/registerUser").permitAll()
                 .anyRequest().denyAll()
-                .and().csrf().disable().logout().logoutSuccessUrl("/").invalidateHttpSession(true);
+                .and().logout().logoutSuccessUrl("/").invalidateHttpSession(true);
+
+
+        http.csrf(csrfConfigurer -> {
+
+            csrfConfigurer.ignoringAntMatchers("/couponapi/coupons/**");
+
+            RequestMatcher regexRequestMatcher = new RegexRequestMatcher("/couponapi/coupons/{code:^[A-Z]*$}", "POST");
+            regexRequestMatcher = new MvcRequestMatcher(new HandlerMappingIntrospector(), "/getCoupon");
+            csrfConfigurer.ignoringRequestMatchers(regexRequestMatcher);
+        });
     }
 
     @Bean

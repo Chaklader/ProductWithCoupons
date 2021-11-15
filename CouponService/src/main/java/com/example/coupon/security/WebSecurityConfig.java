@@ -3,6 +3,7 @@ package com.example.coupon.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -26,6 +27,7 @@ import java.util.List;
  * @author chaklader on @date 11/11/21
  */
 @Configuration
+@Order(1)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
@@ -47,8 +49,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests()
                 .mvcMatchers(HttpMethod.GET, "/index", "/couponapi/coupons/{code:^[A-Z]*$}", "/savecouponresponse", "/showGetCoupon", "/couponDetails")
-//                .hasAnyRole("ADMIN", "USER")
-                .permitAll()
+                .hasAnyRole("ADMIN", "USER")
                 .mvcMatchers(HttpMethod.GET, "/createcoupon", "/showCreateCoupon").hasRole("ADMIN")
                 .mvcMatchers(HttpMethod.POST, "/couponapi/coupons", "/saveCoupon").hasRole("ADMIN")
                 .mvcMatchers(HttpMethod.POST, "/getCoupon").hasAnyRole("ADMIN", "USER")

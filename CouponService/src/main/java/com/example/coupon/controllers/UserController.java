@@ -30,6 +30,7 @@ public class UserController {
 
     @GetMapping("/")
     public String showLoginPage() {
+
         return "login";
     }
 

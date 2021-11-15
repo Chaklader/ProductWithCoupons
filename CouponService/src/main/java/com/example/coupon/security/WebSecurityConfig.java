@@ -7,6 +7,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -27,7 +28,8 @@ import java.util.List;
  * @author chaklader on @date 11/11/21
  */
 @Configuration
-@Order(1)
+//@EnableGlobalMethodSecurity(prePostEnabled = true)
+@Order(101)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
@@ -55,32 +57,43 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .mvcMatchers(HttpMethod.POST, "/getCoupon").hasAnyRole("ADMIN", "USER")
                 .mvcMatchers("/", "/login", "/logout", "/showReg", "/registerUser").permitAll()
                 .anyRequest().denyAll()
-                .and().logout().logoutSuccessUrl("/").invalidateHttpSession(true);
+                .and().csrf().disable().logout().logoutSuccessUrl("/").invalidateHttpSession(true);
 
 
-        http.csrf(csrfConfigurer -> {
+//        http.csrf(csrfConfigurer -> {
+//
+//            csrfConfigurer.ignoringAntMatchers("/couponapi/coupons/**");
+//
+//            RequestMatcher regexRequestMatcher = new RegexRequestMatcher("/couponapi/coupons/\\{code:^[A-Z]*$\\}", "POST");
+////            regexRequestMatcher = new MvcRequestMatcher(new HandlerMappingIntrospector(), "/getCoupon");
+//            csrfConfigurer.ignoringRequestMatchers(regexRequestMatcher);
+//        });
 
-            csrfConfigurer.ignoringAntMatchers("/couponapi/coupons/**");
-
-            RequestMatcher regexRequestMatcher = new RegexRequestMatcher("/couponapi/coupons/\\{code:^[A-Z]*$\\}", "POST");
-//            regexRequestMatcher = new MvcRequestMatcher(new HandlerMappingIntrospector(), "/getCoupon");
-            csrfConfigurer.ignoringRequestMatchers(regexRequestMatcher);
-        });
-
-        http.cors(corsConfigurer -> {
-
-            CorsConfigurationSource configurationSource = request->{
-
-                CorsConfiguration configuration = new CorsConfiguration();
-
-                configuration.setAllowedOrigins(List.of("http://localhost:3000", "localhost:3000"));
-                configuration.setAllowedMethods(List.of("GET", "POST"));
-
-                return configuration;
-            };
-
-            corsConfigurer.configurationSource(configurationSource);
-        });
+//        http.cors(corsConfigurer -> {
+//
+//            CorsConfigurationSource configurationSource = request -> {
+//
+//                CorsConfiguration configuration = new CorsConfiguration();
+//
+//                configuration.setAllowedOrigins(
+//                        List.of(
+//                                "http://localhost:3000",
+//                                "http://localhost:3000/**",
+//                                "localhost:3000",
+//                                "localhost:3000/**"
+//                        ));
+//
+//                configuration.setAllowedMethods(
+//                        List.of(
+//                                "GET",
+//                                "POST"
+//                        ));
+//
+//                return configuration;
+//            };
+//
+//            corsConfigurer.configurationSource(configurationSource);
+//        });
     }
 
     @Bean

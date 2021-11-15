@@ -3,6 +3,7 @@ package com.example.coupon.controllers;
 import com.example.coupon.models.Coupon;
 import com.example.coupon.repos.CouponRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -23,6 +24,7 @@ public class CouponRestController {
     }
 
     @GetMapping("/coupons/{code}")
+//    @PostAuthorize("returnObject.discount < 60")
     public Coupon getCoupon(@PathVariable("code") String code) {
 
         Coupon coupon = couponRepo.findByCode(code);

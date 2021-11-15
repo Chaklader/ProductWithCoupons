@@ -3,6 +3,7 @@ package com.example.coupon.controllers;
 import com.example.coupon.models.Coupon;
 import com.example.coupon.repos.CouponRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,9 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
  * @author chaklader
  * @date 11/11/21
  */
-
-
-
+//@CrossOrigin
 @Controller
 @RequestMapping("/")
 public class CouponController {
@@ -25,6 +24,7 @@ public class CouponController {
     private CouponRepo couponRepo;
 
     @GetMapping("/showCreateCoupon")
+    @PreAuthorize("hasAnyRole('ADMIN')")
     public String showCreateCoupon() {
 
         return "createcoupon";

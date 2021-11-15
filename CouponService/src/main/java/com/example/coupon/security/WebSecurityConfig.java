@@ -14,7 +14,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.servlet.util.matcher.MvcRequestMatcher;
 import org.springframework.security.web.util.matcher.RegexRequestMatcher;
 import org.springframework.security.web.util.matcher.RequestMatcher;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 
 /**
@@ -41,7 +46,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //        http.formLogin();
 
         http.authorizeRequests()
-                .mvcMatchers(HttpMethod.GET, "/index", "/couponapi/coupons/{code:^[A-Z]*$}", "/savecouponresponse", "/showGetCoupon", "/couponDetails").hasAnyRole("ADMIN", "USER")
+                .mvcMatchers(HttpMethod.GET, "/index", "/couponapi/coupons/{code:^[A-Z]*$}", "/savecouponresponse", "/showGetCoupon", "/couponDetails")
+//                .hasAnyRole("ADMIN", "USER")
+                .permitAll()
                 .mvcMatchers(HttpMethod.GET, "/createcoupon", "/showCreateCoupon").hasRole("ADMIN")
                 .mvcMatchers(HttpMethod.POST, "/couponapi/coupons", "/saveCoupon").hasRole("ADMIN")
                 .mvcMatchers(HttpMethod.POST, "/getCoupon").hasAnyRole("ADMIN", "USER")
@@ -54,9 +61,24 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
             csrfConfigurer.ignoringAntMatchers("/couponapi/coupons/**");
 
-            RequestMatcher regexRequestMatcher = new RegexRequestMatcher("/couponapi/coupons/{code:^[A-Z]*$}", "POST");
-            regexRequestMatcher = new MvcRequestMatcher(new HandlerMappingIntrospector(), "/getCoupon");
+            RequestMatcher regexRequestMatcher = new RegexRequestMatcher("/couponapi/coupons/\\{code:^[A-Z]*$\\}", "POST");
+//            regexRequestMatcher = new MvcRequestMatcher(new HandlerMappingIntrospector(), "/getCoupon");
             csrfConfigurer.ignoringRequestMatchers(regexRequestMatcher);
+        });
+
+        http.cors(corsConfigurer -> {
+
+            CorsConfigurationSource configurationSource = request->{
+
+                CorsConfiguration configuration = new CorsConfiguration();
+
+                configuration.setAllowedOrigins(List.of("http://localhost:3000", "localhost:3000"));
+                configuration.setAllowedMethods(List.of("GET", "POST"));
+
+                return configuration;
+            };
+
+            corsConfigurer.configurationSource(configurationSource);
         });
     }
 

@@ -20,8 +20,10 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/")
 public class CouponController {
 
+
     @Autowired
     private CouponRepo couponRepo;
+
 
     @GetMapping("/showCreateCoupon")
     @PreAuthorize("hasAnyRole('ADMIN')")

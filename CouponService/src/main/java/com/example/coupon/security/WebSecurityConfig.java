@@ -60,14 +60,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and().csrf().disable().logout().logoutSuccessUrl("/").invalidateHttpSession(true);
 
 
-//        http.csrf(csrfConfigurer -> {
-//
-//            csrfConfigurer.ignoringAntMatchers("/couponapi/coupons/**");
-//
-//            RequestMatcher regexRequestMatcher = new RegexRequestMatcher("/couponapi/coupons/\\{code:^[A-Z]*$\\}", "POST");
-////            regexRequestMatcher = new MvcRequestMatcher(new HandlerMappingIntrospector(), "/getCoupon");
-//            csrfConfigurer.ignoringRequestMatchers(regexRequestMatcher);
-//        });
+        http.csrf(csrfConfigurer -> {
+
+            csrfConfigurer.ignoringAntMatchers("/couponapi/coupons/**");
+
+            RequestMatcher regexRequestMatcher = new RegexRequestMatcher("/couponapi/coupons/\\{code:^[A-Z]*$\\}", "POST");
+//            regexRequestMatcher = new MvcRequestMatcher(new HandlerMappingIntrospector(), "/getCoupon");
+            csrfConfigurer.ignoringRequestMatchers(regexRequestMatcher);
+        });
 
 //        http.cors(corsConfigurer -> {
 //

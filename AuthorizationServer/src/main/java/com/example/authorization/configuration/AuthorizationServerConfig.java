@@ -101,11 +101,13 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 	public JwtAccessTokenConverter jwtAccessTokenConverter() {
 
 		JwtAccessTokenConverter jwtAccessTokenConverter = new JwtAccessTokenConverter();
-		KeyStoreKeyFactory keyStoreKeyFactory = new KeyStoreKeyFactory(new ClassPathResource(keyFile),
-				password.toCharArray());
+//		KeyStoreKeyFactory keyStoreKeyFactory = new KeyStoreKeyFactory(new ClassPathResource(keyFile),
+//				password.toCharArray());
+//
+//		KeyPair keyPair = keyStoreKeyFactory.getKeyPair(alias);
+//		jwtAccessTokenConverter.setKeyPair(keyPair);
 
-		KeyPair keyPair = keyStoreKeyFactory.getKeyPair(alias);
-		jwtAccessTokenConverter.setKeyPair(keyPair);
+		jwtAccessTokenConverter.setSigningKey("couponKey");
 
 		return jwtAccessTokenConverter;
 	}

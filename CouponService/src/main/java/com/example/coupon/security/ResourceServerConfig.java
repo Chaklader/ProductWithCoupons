@@ -14,6 +14,10 @@ import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenCo
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
 
+
+/**
+ * @author chaklader on @date 11/11/21
+ */
 @Configuration
 @EnableResourceServer
 public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
@@ -22,13 +26,13 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 	private static final String RESOURCE_ID = "couponservice";
 
 
-	@Value("${publicKey}")
-	public String publicKey;
+//	@Value("${publicKey}")
+//	public String publicKey;
 
 
 	@Override
 	public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
-		resources.resourceId(RESOURCE_ID);
+		resources.resourceId(RESOURCE_ID).tokenStore(tokenStore());
 	}
 
 	@Override
@@ -50,8 +54,10 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 	public JwtAccessTokenConverter jwtAccessTokenConverter() {
 
 		JwtAccessTokenConverter jwtAccessTokenConverter = new JwtAccessTokenConverter();
-		jwtAccessTokenConverter.setVerifierKey(publicKey);
 
+//		jwtAccessTokenConverter.setVerifierKey(publicKey);
+
+		jwtAccessTokenConverter.setSigningKey("couponKey");
 		return jwtAccessTokenConverter;
 	}
 

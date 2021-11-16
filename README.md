@@ -243,13 +243,13 @@ If we implemented the code using the <b>JWT token signature</b>, we dont need to
 
 
 
-## REATE THE PRIVATE  AND PUBLIC KEY
+## CREATE THE PRIVATE  AND PUBLIC KEY
 
 <br>
 <br>
 
 ```
-    keytool -genkeypair -alias jwtiscool -keyalg RSA -keypass jwtiscool -keystore jwtiscool.jks -storepass jwtiscool
+keytool -genkeypair -alias jwtiscool -keyalg RSA -keypass jwtiscool -keystore jwtiscool.jks -storepass jwtiscool
 
-    keytool -list -rfc --keystore jwtiscool.jks | openssl x509 -inform pem -pubkey
+keytool -list -rfc --keystore jwtiscool.jks | openssl x509 -inform pem -pubkey
 ```

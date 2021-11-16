@@ -49,28 +49,30 @@ This ensures that the application in different domains can communicate with each
 
 <br>
 
+<br>
+<br>
 
+<img src="images/2.png" alt="Girl in a jacket" >
+figure: Spring security flow
+
+<br>
+<br>
 
 <br>
 <br>
 
 <img src="images/1.png" alt="Girl in a jacket" >
-
+<b>figure:</b> Spring security password based authetication flow
 <br>
 <br>
 
-<br>
-<br>
 
-<img src="images/2.png" alt="Girl in a jacket" >
-
-<br>
-<br>
 
 <br>
 <br>
 
 <img src="images/3.png" alt="Girl in a jacket" >
+<b>figure:</b> Spring security authorization code based authetication flow
 
 <br>
 <br>
@@ -79,7 +81,7 @@ This ensures that the application in different domains can communicate with each
 <br>
 
 <img src="images/4.png" alt="Girl in a jacket" >
-
+<b>figure:</b> Spring security client credentials based authetication flow
 <br>
 <br>
 
@@ -158,12 +160,24 @@ This ensures that the application in different domains can communicate with each
 <img src="images/NORMAL_OAUTH_WITH_JWT.png" alt="Girl in a jacket" >
 
 <br>
+
+
+If we implemented the code using the <b>JWT token signature</b>, we dont need to make an extra request to the authetication server for the verification purpose. The toekn will include signature that would include the verification info. 
+
+
 <br>
 
 <br>
+<br>
+
+## OAUTH WITH JWT TOKEN 
+
 <br>
 
 <img src="images/JWT_ACCESS_CODE.png" alt="Girl in a jacket" >
+
+<br>
+
 
 <br>
 <br>
@@ -230,6 +244,9 @@ This ensures that the application in different domains can communicate with each
 
 
 ## REATE THE PRIVATE  AND PUBLIC KEY
+
+<br>
+<br>
 
 ```
     keytool -genkeypair -alias jwtiscool -keyalg RSA -keypass jwtiscool -keystore jwtiscool.jks -storepass jwtiscool

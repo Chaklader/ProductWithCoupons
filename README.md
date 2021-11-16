@@ -248,8 +248,10 @@ If we implemented the code using the <b>JWT token signature</b>, we dont need to
 <br>
 <br>
 
-```
+<b>
 keytool -genkeypair -alias jwtiscool -keyalg RSA -keypass jwtiscool -keystore jwtiscool.jks -storepass jwtiscool
 
+<br>
+
 keytool -list -rfc --keystore jwtiscool.jks | openssl x509 -inform pem -pubkey
-```
+</b>

@@ -15,16 +15,12 @@ import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenCo
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
 
-//@Configuration
-//@EnableResourceServer
+@Configuration
+@EnableResourceServer
 public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
 
 	private static final String RESOURCE_ID = "couponservice";
-
-
-	@Autowired
-	private  JwtAccessTokenConverter jwtAccessTokenConverter;
 
 
 	@Value("${publicKey}")
@@ -40,14 +36,14 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 	public void configure(HttpSecurity http) throws Exception {
 
 		http.authorizeRequests()
-				.mvcMatchers(HttpMethod.GET, "/couponapi/coupons/{code:^[A-Z]*$}").hasAnyRole("USER", "ADMIN")
+				.mvcMatchers(HttpMethod.GET, "/couponapi/coupons/{code:^[A-Z]*$}", "/codeHandlerPage").hasAnyRole("USER", "ADMIN")
 				.mvcMatchers(HttpMethod.POST, "/couponapi/coupons").hasRole("ADMIN")
 				.anyRequest().denyAll().and().csrf().disable();
 	}
 
 	@Bean
 	public TokenStore tokenStore() {
-		return new JwtTokenStore(jwtAccessTokenConverter);
+		return new JwtTokenStore(jwtAccessTokenConverter());
 	}
 
 	@Bean

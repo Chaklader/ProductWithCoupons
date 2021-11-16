@@ -46,6 +46,14 @@ public class CouponController {
         return "getcoupon";
     }
 
+    @GetMapping("/codeHandlerPage")
+    public String showCodeHandlerPage() {
+
+        return "codeHandlerPage";
+    }
+
+    // http://localhost:9092/oauth/authorize?response_type=code&client_id=couponclientapp&score=read
+
 
     @PostMapping("/getCoupon")
     public ModelAndView showCoupon(String code) {

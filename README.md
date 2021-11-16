@@ -89,6 +89,55 @@
 <br>
 
 
+## AUTHORIZATION CODE GRANT TYPE
+
+<br>
+<br>
+
+<img src="images/LOGIN_PAGE.png" alt="Girl in a jacket" >
+
+<br>
+<br>
+
+
+
+<br>
+<br>
+
+<img src="images/OAUTH_APPROVAL.png" alt="Girl in a jacket" >
+
+<br>
+<br>
+
+
+<br>
+<br>
+
+<img src="images/AUTHORIZATION_CODE.png" alt="Girl in a jacket" >
+
+<br>
+<br>
+
+
+
+<br>
+<br>
+
+<img src="images/POSTMAN_1.png" alt="Girl in a jacket" >
+
+<br>
+<br>
+
+
+<br>
+<br>
+
+<img src="images/POSTMAN_2.png" alt="Girl in a jacket" >
+
+<br>
+<br>
+
+
 
 
 ```

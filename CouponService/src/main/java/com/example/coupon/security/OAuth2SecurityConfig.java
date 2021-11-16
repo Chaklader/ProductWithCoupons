@@ -3,7 +3,9 @@ package com.example.coupon.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -12,7 +14,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 /**
  * @author chaklader on @date 11/11/21
  */
-//@Configuration
+@Configuration
+@Order(101)
 public class OAuth2SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
@@ -26,5 +29,10 @@ public class OAuth2SecurityConfig extends WebSecurityConfigurerAdapter {
     public PasswordEncoder passwordEncoder() {
 
         return new BCryptPasswordEncoder();
+    }
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.formLogin();
     }
 }

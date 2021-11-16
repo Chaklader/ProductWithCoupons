@@ -79,7 +79,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 	public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
 		clients.inMemory().withClient("couponclientapp").secret(passwordEncoder.encode("9999"))
 				.authorizedGrantTypes("authorization_code", "password", "refresh_token").scopes("read", "write").resourceIds(RESOURCE_ID)
-				.redirectUris("http://localhost:9091:codeHandlerPage");
+				.redirectUris("http://localhost:9091/codeHandlerPage");
 	}
 
 

@@ -27,9 +27,9 @@ import java.util.List;
 /**
  * @author chaklader on @date 11/11/21
  */
-@Configuration
+//@Configuration
 //@EnableGlobalMethodSecurity(prePostEnabled = true)
-@Order(101)
+//@Order(101)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
